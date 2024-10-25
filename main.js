@@ -6,20 +6,22 @@ const gameBoardModule = (function () {
         for (let i = 0; i < 9; i++) {
             const cellBtn = document.createElement('button');
             cellBtn.value = i;
-
+            
             cellBtn.addEventListener('click', () => {
                 cellBtn.textContent = turnModule.getTurn() % 2 !== 0 ? "X" : "O";
                 turnModule.alternatePlayer(parseInt(cellBtn.value));
+                announceWinnerModule ()
                 cellBtn.disabled = true; // Disable the clicked button
-            });
 
+                
+            });
             gameBoardDiv.appendChild(cellBtn);
         }
     };
 
     return { createCells , gameBoardDiv,};
 
-})(); gameBoardModule.createCells();
+})(); 
 
 // Create game mechanics
 const playGameModule = (function (playerChoice) {
@@ -75,13 +77,13 @@ const playGameModule = (function (playerChoice) {
         ) {
             return playerModule.getPlayerTwo();
         } else if (cell.every(value => value != null)) {
-            return noWinner;
+            return 'Nobody';
         }
         return null;
-    };
+    }; 
 
     // Expose only the necessary properties
-    return {setPlayerOneChoice, setPlayerTwoChoice, gameWinner}
+    return {setPlayerOneChoice, setPlayerTwoChoice, gameWinner, gameBoard}
 
 })();
 
@@ -101,9 +103,15 @@ const turnModule = (function () {
         }
     };
 
+    const resetTurn = function () {
+        turn = 1;  // Reset to initial value
+        console.log("Turn reset to:", turn);  // Verify reset
+    };
+
     return {
         getTurn: () => turn,
         alternatePlayer, // Returning the function directly
+        resetTurn,
     };
 })();
 
@@ -117,12 +125,21 @@ function resetGame () {
         gameBoardModule.gameBoardDiv.removeChild(gameBoardModule.gameBoardDiv.firstChild);
     }
 
-    playerModule.getPlayerOne = ""; 
-    playerModule.getPlayerTwo = ""; 
+    playGameModule.gameBoard.scoreArray = [null, null, null, null, null, null, null, null, null];
+
+    playerModule.resetPlayers(); 
+
     document.getElementById('playerOneName').textContent = '';
     document.getElementById('playerTwoName').textContent = '';
+    document.getElementById('playerOne').value = '';
+    document.getElementById('playerTwo').value = '';
+    
+    const announcement = document.getElementById('announcement');
+    announcement.textContent = "";
    
-    gameBoardModule.createCells();
+    // gameBoardModule.createCells();
+
+   turnModule.resetTurn();
 
     const submitBtn = document.getElementById('submitPlayerName');
     submitBtn.disabled = false;
@@ -145,6 +162,7 @@ const playerModule = (function () {
         event.preventDefault();
         createPlayers();
         submitBtn.disabled = true; 
+        gameBoardModule.createCells()
     });
 
     // Function to create players and update the UI
@@ -156,12 +174,30 @@ const playerModule = (function () {
         playerTwoName.textContent = playerTwo;
     }
 
+    // Reset player names
+    function resetPlayers() {
+        playerOne = "";
+        playerTwo = "";
+    }
+
     // Expose only what you want accessible to the outside
     return {
         getPlayerOne: () => playerOne,
         getPlayerTwo: () => playerTwo,
+        resetPlayers,
     };
 })();
 
 //Announce winner
+function announceWinnerModule () {
+    const announcement = document.getElementById('announcement');
+    
+    // Function to check and announce the winner\
+    const winner = playGameModule.gameWinner(); // Call to get the current winner
+    
+    if (winner !== null) { 
+        announcement.textContent = `${winner} won!`; // Update the announcement
+        };
+}
+
 

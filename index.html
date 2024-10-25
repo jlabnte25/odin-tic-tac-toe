@@ -4,17 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odin Tic-Tac-Toe</title>
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <form>
-        <input type="text" id="playerOne" name="playerOne" placeholder="First Player's Name">
-        <input type="text" id="playerTwo" name="playerTwo" placeholder="Second Player's Name">
-        <button type ="submit" id="submitPlayerName">Submit</button>
-    </form>
-    <p id="playerOneName">Placeholder</p>
-    <p id="playerTwoName">Placeholder</p>
-    <div id="gameBoardDiv"></div>
-    <button type="button" id="resetButton">Reset</button>
+    <div class = "left panel">
+        <form>
+            <p> Submit names to get started </p>
+            <input type="text" id="playerOne" name="playerOne" placeholder="First Player's Name" required>
+            <input type="text" id="playerTwo" name="playerTwo" placeholder="Second Player's Name" required>
+            <button type ="submit" id="submitPlayerName">Submit</button>
+        </form>
+        <button type="button" id="resetButton">Reset</button>
+    </div>
+
+    <div class="top-right panel">
+
+        <h1> TIC - TAC - TOE </h1>
+
+        <div class="playerName">
+            <p id="playerOneName">Placeholder</p>
+        </div>
+        <div class="playerName">
+            <p id="playerTwoName">Placeholder</p>
+        </div>
+    </div>
+
+    <div class="bottom-right panel">
+        <div id="gameBoardDiv"></div>
+    </div>
+
+    <div class="control panel">
+        <p id="announcement"></p>
+    </div>
 </body>
 <script src="main.js"></script>
 </html>
