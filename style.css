@@ -1,0 +1,197 @@
+/* Manage default style */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  * {
+    margin: 0;
+  }
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  input, button, textarea, select {
+    font: inherit;
+  }
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+
+  #root, #__next {
+    isolation: isolate;
+  }
+
+/* Ensure the dialog appears properly and closes */
+body {
+    font-family: Outfit, sans-serif;
+}
+
+dialog {
+    position: fixed; /* Make it float over the page */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust to exact center */
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    max-width: 90%; /* Make it responsive */
+    width: 40vw;
+    height: 45vh;
+    color: #00ff21;
+}
+
+dialog::backdrop {
+    background-color: rgb(0, 0, 0); /* Slightly transparent black */
+}
+
+/* Styling for the form inside the dialog */
+dialog form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+}
+
+/* Paragraph styling */
+dialog p {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+/* Input field styles */
+dialog input {
+    height: 40%; /* Reduce height for better usability */
+    width: 50%;
+    padding: 6px 0;
+    padding-left: 20px;
+    font-size: 1.3rem;
+    border: #00ff21 solid 2px;
+    background-color: black;
+    color: #00ff21;
+}
+
+/* Button styling */
+dialog button {
+    margin-top: 10%;
+    height: 30%;
+    width: 20%;
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 3px;
+    padding: 12px 24px;
+    border: #ffffff solid 2px;
+    color: #00ff21;
+    background-color: black;
+    line-height: 1.15;
+    font-size: 16px;
+}
+
+dialog button:hover {
+    transition: all .1s ease;
+    border: #00ff21 solid 2px;
+    box-shadow: 0 0 0 3px #00ff21, 0 0 0 3px #00ff21;
+    color: white;
+    font-weight: 800;
+}
+
+body {
+    background-color: black;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #00ff21;
+    text-align: center;
+}
+
+
+#gameBoardDiv {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3,1fr);
+    width: 450px;
+    height: 450px;
+    background-color: #00ff21;
+    gap: 6px;
+    padding: 6px;
+    margin: 20px;
+}
+
+#gameBoardDiv button {
+    border: 0;
+    background-color: black;
+    color: #00ff21;
+    font-size: 4rem;
+}
+
+.player-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    gap: 15px;
+}
+
+.playerNameContainer{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 20px;
+    border: #00ff21 solid 5px;
+    border-radius: 4px;
+    flex: 1;
+    align-items: center;
+}
+
+.playerNameContainer .playerCoin {
+    grid-column: 1 / 2;
+    font-size: 3rem;
+    justify-self: center;
+}
+
+.playerNameContainer .playerName {
+    grid-column: 2 / -1;
+    justify-self: left;
+    font-size: 1.4rem;
+}
+
+/* Button styling */
+#gameBoardDiv button:hover {
+    transition: background-color 0.3s ease;
+    background-color: #00ff21;
+}
+
+#gameBoardDiv button.no-hover:hover {
+    background-color: #000000; /* Removes the hover effect */
+    cursor: not-allowed;
+}
+
+#resetButton {
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 3px;
+    padding: 12px 30px;
+    border: 0;
+    color: black;
+    background-color: #00ff21;
+    line-height: 1.15;
+    font-size: 1.4rem;
+}
+
+#resetButton:hover {
+    color:#00ff21;
+    background-color: #000000;
+    border: #00ff21 solid 3px;
+}

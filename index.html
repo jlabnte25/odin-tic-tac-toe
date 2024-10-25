@@ -4,37 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odin Tic-Tac-Toe</title>
-    <link href="style.css" rel="stylesheet">
+    <link  rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class = "left panel">
-        <form>
-            <p> Submit names to get started </p>
-            <input type="text" id="playerOne" name="playerOne" placeholder="First Player's Name" required>
-            <input type="text" id="playerTwo" name="playerTwo" placeholder="Second Player's Name" required>
-            <button type ="submit" id="submitPlayerName">Submit</button>
-        </form>
+        <dialog id="dialog" class = "left panel">
+            <form>
+                <p> Submit names to get started </p>
+                <input required type="text" id="playerOne" name="playerOne" placeholder="First Player's Name">
+                <input required type="text" id="playerTwo" name="playerTwo" placeholder="Second Player's Name">
+                <button type ="submit" id="submitPlayerName">Submit</button>
+            </form>
+        </dialog>
+
+    <div class="container">    
+        <div class="header">
+
+            <h1> TIC - TAC - TOE </h1>
+            <div class="player-container">
+                <div class="playerNameContainer">
+                    <p class="playerCoin"> X </p>
+                    <p class="playerName"id="playerOneName">Placeholder</p>
+                </div>
+                <div class="playerNameContainer">
+                    <p class="playerCoin"> O </p>
+                    <p class="playerName"id="playerTwoName">Placeholder</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="control panel">
+            <p id="announcement"></p>
+        </div>
+
+        <div class="gameControl">
+            <div id="gameBoardDiv"></div>
+        </div>
+
         <button type="button" id="resetButton">Reset</button>
-    </div>
-
-    <div class="top-right panel">
-
-        <h1> TIC - TAC - TOE </h1>
-
-        <div class="playerName">
-            <p id="playerOneName">Placeholder</p>
-        </div>
-        <div class="playerName">
-            <p id="playerTwoName">Placeholder</p>
-        </div>
-    </div>
-
-    <div class="bottom-right panel">
-        <div id="gameBoardDiv"></div>
-    </div>
-
-    <div class="control panel">
-        <p id="announcement"></p>
     </div>
 </body>
 <script src="main.js"></script>

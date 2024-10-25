@@ -5,6 +5,7 @@ const gameBoardModule = (function () {
     const createCells = () => {
         for (let i = 0; i < 9; i++) {
             const cellBtn = document.createElement('button');
+            cellBtn.id = `cell-${i}`;
             cellBtn.value = i;
             
             cellBtn.addEventListener('click', () => {
@@ -12,8 +13,8 @@ const gameBoardModule = (function () {
                 turnModule.alternatePlayer(parseInt(cellBtn.value));
                 announceWinnerModule ()
                 cellBtn.disabled = true; // Disable the clicked button
+                cellBtn.classList.add('no-hover'); // Add class to disable hover
 
-                
             });
             gameBoardDiv.appendChild(cellBtn);
         }
@@ -118,7 +119,11 @@ const turnModule = (function () {
 
 //Reset Game
 const resetBtn = document.getElementById('resetButton');
-resetBtn.addEventListener('click', resetGame);
+resetBtn.addEventListener('click', () => {
+    resetGame();
+    const submitBtn = document.getElementById('submitPlayerName');
+    submitBtn.disabled = false;
+    dialog.showModal()});
 
 function resetGame () {
     while (gameBoardModule.gameBoardDiv.firstChild) {
@@ -140,9 +145,7 @@ function resetGame () {
     // gameBoardModule.createCells();
 
    turnModule.resetTurn();
-
-    const submitBtn = document.getElementById('submitPlayerName');
-    submitBtn.disabled = false;
+   
     
 }
 
@@ -157,13 +160,29 @@ const playerModule = (function () {
     const form = document.querySelector('form');
     const submitBtn = document.getElementById('submitPlayerName');
 
-    // Attach event listener to form submit
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        createPlayers();
-        submitBtn.disabled = true; 
-        gameBoardModule.createCells()
-    });
+    // Disable submit button unless playerOne and playerTwo are no longer empty
+        // Function to check if names are valid
+        const checkPlayerNames = () => {
+            submitBtn.disabled = playerOne.trim() === "" || playerTwo.trim() === "";
+        };
+
+        // Attach event listeners to the input fields
+        document.getElementById('playerOne').addEventListener('input', (event) => {
+            playerOne = event.target.value;
+            checkPlayerNames(); // Check validity whenever input changes
+        });
+
+        document.getElementById('playerTwo').addEventListener('input', (event) => {
+            playerTwo = event.target.value;
+            checkPlayerNames(); // Check validity whenever input changes
+        });
+
+        // Attach event listener to form submit
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            createPlayers();
+            gameBoardModule.createCells()
+        });
 
     // Function to create players and update the UI
     function createPlayers() {
@@ -200,4 +219,11 @@ function announceWinnerModule () {
         };
 }
 
+// Create a dialog for player names
+window.addEventListener('load', () => {
+    dialog.showModal(); 
+});
 
+const dialog = document.getElementById("dialog");
+const submitBtn = document.getElementById('submitPlayerName');
+submitBtn.addEventListener('click', () => {dialog.close()});
