@@ -164,7 +164,7 @@ body {
 .playerNameContainer .playerName {
     grid-column: 2 / -1;
     justify-self: left;
-    font-size: 1.4rem;
+    font-size: 1rem;
 }
 
 /* Button styling */
@@ -193,5 +193,5 @@ body {
 #resetButton:hover {
     color:#00ff21;
     background-color: #000000;
-    border: #00ff21 solid 3px;
+    border: #00ff21 solid 3px ;
 }

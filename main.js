@@ -139,9 +139,6 @@ function resetGame () {
     document.getElementById('playerOne').value = '';
     document.getElementById('playerTwo').value = '';
     
-    const announcement = document.getElementById('announcement');
-    announcement.textContent = "";
-   
     // gameBoardModule.createCells();
 
    turnModule.resetTurn();
@@ -184,6 +181,7 @@ const playerModule = (function () {
             gameBoardModule.createCells()
         });
 
+
     // Function to create players and update the UI
     function createPlayers() {
         playerOne = document.getElementById('playerOne').value;
@@ -208,15 +206,65 @@ const playerModule = (function () {
 })();
 
 //Announce winner
-function announceWinnerModule () {
+// function announceWinnerModule () {
+//     const announcement = document.getElementById('announcement');
+    
+//     // Function to check and announce the winner\
+//     const winner = playGameModule.gameWinner(); // Call to get the current winner
+    
+//     if (winner !== null) { 
+//         announcement.textContent = `${winner} won!`; // Update the announcement
+//         };
+// }
+
+// function announceWinnerModule() {
+//     const announcement = document.getElementById('announcement');
+//     const winner = playGameModule.gameWinner(); // Call to get the current winner
+
+//     // Check if there is a winner or if it's a draw
+//     if (winner !== null) {
+//         if (winner === playerModule.getPlayerOne()) {
+//             // Player One wins
+//             document.getElementById('playerOneName').textContent = `${winner} wins!`;
+//             document.getElementById('playerTwoName').textContent = `${playerModule.getPlayerTwo()} loses...`;
+//         } else if (winner === playerModule.getPlayerTwo()) {
+//             // Player Two wins
+//             document.getElementById('playerTwoName').textContent = `${winner} wins!`;
+//             document.getElementById('playerOneName').textContent = `${playerModule.getPlayerOne()} loses...`;
+//         } else {
+//             // It's a draw
+//             announcement.textContent = "It's a draw!";
+//         }
+//     }
+// }
+
+// Announce winner
+function announceWinnerModule() {
     const announcement = document.getElementById('announcement');
-    
-    // Function to check and announce the winner\
     const winner = playGameModule.gameWinner(); // Call to get the current winner
-    
-    if (winner !== null) { 
-        announcement.textContent = `${winner} won!`; // Update the announcement
-        };
+
+    // Check if there is a winner or if it's a draw
+    if (winner !== null) {
+        if (winner === playerModule.getPlayerOne()) {
+            // Player One wins
+            document.getElementById('playerOneName').textContent = `${winner} wins!`;
+            document.getElementById('playerTwoName').textContent = `${playerModule.getPlayerTwo()} loses!`;
+            document.getElementById('playerOneCoin').textContent = "😊"; // Replace with smiley face
+            document.getElementById('playerTwoCoin').textContent = "😢"; // Replace with smiley face
+        } else if (winner === playerModule.getPlayerTwo()) {
+            // Player Two wins
+            document.getElementById('playerTwoName').textContent = `${winner} wins!`;
+            document.getElementById('playerOneName').textContent = `${playerModule.getPlayerOne()} loses!`;
+            document.getElementById('playerOneCoin').textContent = "😢"; // Replace with smiley face
+            document.getElementById('playerTwoCoin').textContent = "😊"; // Replace with smiley face
+        } else {
+            // It's a draw
+            document.getElementById('playerOneCoin').textContent = "😐";
+            document.getElementById('playerTwoCoin').textContent = "😐";
+            document.getElementById('playerTwoName').textContent = `It's a draw`;
+            document.getElementById('playerOneName').textContent = `It's a draw`;
+        }
+    }
 }
 
 // Create a dialog for player names
